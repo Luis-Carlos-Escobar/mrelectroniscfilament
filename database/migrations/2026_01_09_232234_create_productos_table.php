@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             //relaciones
+            $table->foreignId('marca_id')->constrained('marcas')->onDelete('cascade');
             $table->foreignId('modelo_id')->constrained('modelos')->onDelete('cascade');
             $table->foreignId('pulgada_id')->constrained('pulgadas')->onDelete('cascade');
             $table->foreignId('tipo_id')->constrained('tipos')->onDelete('cascade');
