@@ -2,23 +2,25 @@
 
 namespace App\Filament\Resources\Modelos;
 
-use App\Filament\Resources\Modelos\Pages\CreateModelo;
+use UnitEnum;
+use BackedEnum;
+use App\Models\Modelo;
+use Filament\Tables\Table;
+use Filament\Schemas\Schema;
+use Filament\Resources\Resource;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\TextColumn;
 use App\Filament\Resources\Modelos\Pages\EditModelo;
 use App\Filament\Resources\Modelos\Pages\ListModelos;
+use App\Filament\Resources\Modelos\Pages\CreateModelo;
 use App\Filament\Resources\Modelos\Schemas\ModeloForm;
 use App\Filament\Resources\Modelos\Tables\ModelosTable;
-use App\Models\Modelo;
-use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Table;
 
 class ModeloResource extends Resource
 {
     protected static ?string $model = Modelo::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|UnitEnum|null $navigationGroup = 'Datos del Televisor';
 
     public static function form(Schema $schema): Schema
     {
@@ -27,7 +29,10 @@ class ModeloResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return ModelosTable::configure($table);
+        return $table->columns([
+            TextColumn::make('marca.nombre')->label('Marca')->searchable(),
+            TextColumn::make('nombre')->label('Modelo')->searchable(),
+        ]);
     }
 
     public static function getRelations(): array

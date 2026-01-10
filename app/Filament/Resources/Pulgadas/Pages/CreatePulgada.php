@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreatePulgada extends CreateRecord
 {
     protected static string $resource = PulgadaResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return static::$resource::getUrl('index');
+    }
 }

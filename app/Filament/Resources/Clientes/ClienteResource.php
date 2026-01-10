@@ -9,9 +9,11 @@ use App\Filament\Resources\Clientes\Schemas\ClienteForm;
 use App\Filament\Resources\Clientes\Tables\ClientesTable;
 use App\Models\Cliente;
 use BackedEnum;
+use Filament\Actions\EditAction;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class ClienteResource extends Resource
@@ -29,7 +31,14 @@ class ClienteResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return ClientesTable::configure($table);
+        return $table->columns([
+            TextColumn::make('nombre')->label('Nombre')->searchable(),
+            TextColumn::make('documento')->label('Documento')->searchable(),
+            TextColumn::make('telefono')->label('Teléfono')->searchable(),
+            TextColumn::make('direccion')->label('Dirección')->searchable(),
+        ])->actions([
+            EditAction::make(),
+        ]);
     }
 
     public static function getRelations(): array

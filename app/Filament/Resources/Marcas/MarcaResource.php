@@ -2,23 +2,25 @@
 
 namespace App\Filament\Resources\Marcas;
 
-use App\Filament\Resources\Marcas\Pages\CreateMarca;
+use BackedEnum;
+use App\Models\Marca;
+use Filament\Tables\Table;
+use Filament\Schemas\Schema;
+use Filament\Resources\Resource;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\TextColumn;
 use App\Filament\Resources\Marcas\Pages\EditMarca;
 use App\Filament\Resources\Marcas\Pages\ListMarcas;
+use App\Filament\Resources\Marcas\Pages\CreateMarca;
 use App\Filament\Resources\Marcas\Schemas\MarcaForm;
 use App\Filament\Resources\Marcas\Tables\MarcasTable;
-use App\Models\Marca;
-use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Table;
+use UnitEnum;
 
 class MarcaResource extends Resource
 {
     protected static ?string $model = Marca::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|UnitEnum|null $navigationGroup = 'Datos del Televisor';
 
     public static function form(Schema $schema): Schema
     {
@@ -27,7 +29,9 @@ class MarcaResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return MarcasTable::configure($table);
+        return $table->columns([
+            TextColumn::make('nombre')->label('Nombre')->searchable(),
+        ]);
     }
 
     public static function getRelations(): array
