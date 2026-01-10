@@ -14,12 +14,15 @@ use App\Filament\Resources\Productos\Pages\ListProductos;
 use App\Filament\Resources\Productos\Pages\CreateProducto;
 use App\Filament\Resources\Productos\Schemas\ProductoForm;
 use App\Filament\Resources\Productos\Tables\ProductosTable;
+use UnitEnum;
 
 class ProductoResource extends Resource
 {
     protected static ?string $model = Producto::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|UnitEnum|null $navigationGroup = 'Gestión de Inventario';
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCube              ;
 
     protected static ?string $recordTitleAttribute = 'nombre';
 

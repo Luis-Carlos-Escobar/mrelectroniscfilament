@@ -22,6 +22,8 @@ class MarcaResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Datos del Televisor';
 
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingStorefront;
+
     public static function form(Schema $schema): Schema
     {
         return MarcaForm::configure($schema);

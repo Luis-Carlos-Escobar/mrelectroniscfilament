@@ -22,6 +22,8 @@ class ModeloResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Datos del Televisor';
 
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;
+
     public static function form(Schema $schema): Schema
     {
         return ModeloForm::configure($schema);
